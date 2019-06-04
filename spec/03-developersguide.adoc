@@ -271,7 +271,7 @@ A delimited identifier is any sequence of characters enclosed in backticks ([.sy
 [source, cql]
 ----
 `Encounter, Performed`
-`Diagnosis, Active`
+`Diagnosis`
 ----
 
 A quoted identifier is any sequence of characters enclosed in double-quotes ([.sym]#"#):
@@ -279,7 +279,7 @@ A quoted identifier is any sequence of characters enclosed in double-quotes ([.s
 [source,cql]
 ----
 "Encounter, Performed"
-"Diagnosis, Active"
+"Diagnosis"
 ----
 
 The use of double-quotes and backticks allows identifiers to contain spaces, commas, and other characters that would not be allowed within simple identifiers. This allows identifiers within CQL to be much more descriptive and readable.
@@ -1333,10 +1333,10 @@ define "Mother": singleton from ([RelatedPerson: "Mother Relationship"])
 
 define "Estimated Due Date":
   Last(
-    ["Mother" -> "Observation": "Estimated Due Date"] Exam
+    ["Mother" -> "Observation": "Delivery date Estimated"] Exam
       sort by effective
   )
-  
+
 define "Gestational Age in Days at Birth":
   (280 - (duration in days between "Estimated Due Date" and "Birth Date")) div 7
 ----
